@@ -28,8 +28,6 @@ CREATE TABLE dim_date(
   PRIMARY KEY (`date_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Here is the PopulateDateDimension Stored Procedure: 
-delimiter //
 
 DROP PROCEDURE IF EXISTS PopulateDateDimension//
 CREATE PROCEDURE PopulateDateDimension(BeginDate DATETIME, EndDate DATETIME)
@@ -39,8 +37,8 @@ BEGIN
 	# Description: http://arcanecode.com/2009/11/18/populating-a-kimball-date-dimension/
 	# =============================================
 
-	# A few notes, this code does nothing to the existing table, no deletes are triggered before hand.
-    # Because the DateKey is uniquely indexed, it will simply produce errors if you attempt to insert duplicates.
+	# NOTES: this code does nothing to the existing table, no deletes are triggered before hand.
+    # Because the DateKey is unique, it will simply produce errors if you attempt to insert duplicates.
 	# You can however adjust the Begin/End dates and rerun to safely add new dates to the table every year.
 	# If the begin date is after the end date, no errors occur but nothing happens as the while loop never executes.
 
